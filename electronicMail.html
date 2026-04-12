@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body class="contact">
+    <script src="./js/script.js"></script>
 
     <nav>
         <h1>Ned Arnold</h1>
@@ -20,7 +21,10 @@
     <main>
         <h2>Contact Me</h2>
 
-        <p>You can reach me through the following:</p>
+        <p>Send me a message:</p>
+
+        <input id="text" placeholder="Enter Message">
+        <button onclick="sendPrint()">Print</button>
 
         <ul>
             <li>Email: yourname@example.com</li>
@@ -28,21 +32,6 @@
             <li>GitHub: https://github.com/yourusername</li>
         </ul>
 
-        <section>
-            <h3>Send a Message</h3>
-            <form>
-                <label>Name:</label><br>
-                <input type="text" name="name"><br><br>
-
-                <label>Email:</label><br>
-                <input type="email" name="email"><br><br>
-
-                <label>Message:</label><br>
-                <textarea name="message"></textarea><br><br>
-
-                <button type="submit">Send</button>
-            </form>
-        </section>
     </main>
 
     <footer>
