@@ -1,0 +1,67 @@
+body.home {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    /*background-color: #f4f4f4;*/
+    background-image: url('./images/gray-pattern-texture.jpg');
+}
+
+body.contact {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    /*background-color: #f4f4f4;*/
+    background-image: url('./images/gray-pattern-texture.jpg');
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background-image: url('./images/pattern1.jpg');*/
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* middle row (1fr) */
+  min-height: 100vh;
+}
+
+footer {
+    /*background-color: #333;*/
+    background-image: url('./images/pattern1.jpg');
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+form input, form textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5em;
+}
+
+button {
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
