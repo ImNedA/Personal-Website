@@ -1,3 +1,5 @@
+console.log("script loaded");
+
 document.getElementById("printImageBtn").addEventListener("click", sendImage);
 
 async function sendPrint() {
@@ -27,6 +29,7 @@ async function sendPrint() {
 }
 
 async function sendImage() {
+  console.log("sendImage called");
   const input = document.getElementById("imageInput");
   const file = input.files[0];
 
