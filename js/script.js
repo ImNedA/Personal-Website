@@ -1,62 +1,61 @@
 console.log("script loaded");
 
-document.getElementById("printImageBtn").addEventListener("click", sendImage);
+document.addEventListener("DOMContentLoaded", () => {
+  const imageInput = document.getElementById("imageInput");
+  const printImageBtn = document.getElementById("printImageBtn");
+  const imagePreview = document.getElementById("imagePreview");
+  const previewContainer = document.getElementById("previewContainer");
 
-async function sendPrint() {
-  const text = document.getElementById("text").value;
+  imageInput.addEventListener("change", showPreview);
+  printImageBtn.addEventListener("click", sendImage);
 
-  try {
-    const response = await fetch("/print", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ text })
-    });
+  function showPreview() {
+    const file = imageInput.files[0];
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      alert(result.error || "Print failed");
+    if (!file) {
+      previewContainer.style.display = "none";
+      imagePreview.src = "";
       return;
     }
 
-    alert(`Printed. Remaining today: ${result.remaining_today}`);
-  } catch (err) {
-    console.error(err);
-    alert("Request failed");
-  }
-}
+    const reader = new FileReader();
 
-async function sendImage() {
-  console.log("sendImage called");
-  const input = document.getElementById("imageInput");
-  const file = input.files[0];
+    reader.onload = function (e) {
+      imagePreview.src = e.target.result;
+      previewContainer.style.display = "block";
+    };
 
-  if (!file) {
-    alert("Please choose an image first.");
-    return;
+    reader.readAsDataURL(file);
   }
 
-  const formData = new FormData();
-  formData.append("image", file);
+  async function sendImage() {
+    const file = imageInput.files[0];
 
-  try {
-    const response = await fetch("/print-image", {
-      method: "POST",
-      body: formData
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      alert(result.error || "Image print failed");
+    if (!file) {
+      alert("Please choose an image first.");
       return;
     }
 
-    alert(`Printed. Remaining today: ${result.remaining_today}`);
-  } catch (err) {
-    console.error(err);
-    alert("Request failed");
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("/print-image", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        alert(result.error || "Image print failed");
+        return;
+      }
+
+      alert(`Printed. Remaining today: ${result.remaining_today}`);
+    } catch (err) {
+      console.error(err);
+      alert("Request failed");
+    }
   }
-}
+});
